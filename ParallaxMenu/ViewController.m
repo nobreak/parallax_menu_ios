@@ -45,6 +45,7 @@
 
 - (void) openMenu
 {
+    [self setAnchorPoint:CGPointMake(1.0, 0.5) forView:_viewMain];
     CGFloat angle = -45.0f;
     
     CATransform3D t1 = CATransform3DIdentity;
@@ -55,13 +56,11 @@
     [UIView animateWithDuration:0.5 animations:^(void){
         _viewMain.layer.transform = t1;
         _viewShadowOverlay.alpha = 1.0f;
-        //_viewMain.frame = CGRectMake(_viewMain.frame.origin.x+2, _viewMain.frame.origin.y, _viewMain.frame.size.width, _viewMain.frame.size.height);
-    }];
+        _viewMain.frame = CGRectMake(_viewMain.frame.origin.x+2, _viewMain.frame.origin.y, _viewMain.frame.size.width, _viewMain.frame.size.height);
+    } ];
     
     _isMenuOpen = YES;
-
-    
-//    [self rotateByPoint:CGPointMake(-45.0f, 0.0f)];
+ 
 }
 
 - (void) closeMenu
@@ -75,7 +74,9 @@
     [UIView animateWithDuration:0.5 animations:^(void){
         _viewMain.layer.transform = t1;
         _viewShadowOverlay.alpha = 0.0f;
-        //_viewMain.frame = CGRectMake(0, _viewMain.frame.origin.y, _viewMain.frame.size.width, _viewMain.frame.size.height);
+        _viewMain.frame = _viewBackground.frame;
+    }completion:^(BOOL fnished){
+        [self setAnchorPoint:CGPointMake(0.5, 0.5) forView:_viewMain];
     }];
     
     _isMenuOpen = NO;
