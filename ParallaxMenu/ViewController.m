@@ -24,10 +24,26 @@
     self.isMenuOpen = NO;
     [self setAnchorPoint:CGPointMake(1, 0.5) forView:_viewMain];
     
+    _viewBackground.layer.contents = (__bridge id _Nullable)([UIImage imageNamed:@"klee"].CGImage);
+    
+    //_viewMain.hidden = YES;
+    
+    if (!UIAccessibilityIsReduceTransparencyEnabled()) {
+        self.view.backgroundColor = [UIColor clearColor];
+        
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        blurEffectView.frame = self.view.bounds;
+        blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        //[self.view addSubview:blurEffectView];
+        //_viewBackground.layer.contents = blurEffectView;
+    }
+    
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
     gradient.frame = _viewShadowOverlay.bounds;
-    gradient.startPoint = CGPointMake(0.6,0.5);
+    gradient.startPoint = CGPointMake(0.9,0.5);
     gradient.endPoint = CGPointMake(0,0.5);
     gradient.colors = @[(id)[UIColor clearColor].CGColor, (id)[UIColor grayColor].CGColor];
     
@@ -65,7 +81,7 @@
     [UIView animateWithDuration:0.5 animations:^(void){
         _viewMain.layer.transform = t1;
         _viewShadowOverlay.alpha = 1.0f;
-        _viewMain.frame = CGRectMake(_viewMain.frame.origin.x+2, _viewMain.frame.origin.y, _viewMain.frame.size.width, _viewMain.frame.size.height);
+//        _viewMain.frame = CGRectMake(_viewMain.frame.origin.x+2, _viewMain.frame.origin.y, _viewMain.frame.size.width, _viewMain.frame.size.height);
     } ];
     
     _isMenuOpen = YES;
