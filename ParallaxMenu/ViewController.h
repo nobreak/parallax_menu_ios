@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIView *viewBackground;
+@property (weak, nonatomic) IBOutlet UIView *viewMain;
+@property (weak, nonatomic) IBOutlet UIView *viewShadowOverlay;
 
+- (IBAction)onBtnMenuTouched:(id)sender;
 
 @end
 
