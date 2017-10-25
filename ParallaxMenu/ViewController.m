@@ -82,6 +82,7 @@
     [UIView animateWithDuration:0.5 animations:^(void){
         _viewMain.layer.transform = t1;
         _viewShadowOverlay.alpha = 1.0f;
+        _viewMenu.frame = CGRectMake(0,_viewMenu.frame.origin.y, _viewMenu.frame.size.width, _viewMenu.frame.size.height);
     } ];
     
     _isMenuOpen = YES;
@@ -99,6 +100,7 @@
     [UIView animateWithDuration:0.5 animations:^(void){
         _viewMain.layer.transform = t1;
         _viewShadowOverlay.alpha = 0.0f;
+        _viewMenu.frame = CGRectMake(_viewMenu.frame.size.width*-1,_viewMenu.frame.origin.y, _viewMenu.frame.size.width, _viewMenu.frame.size.height);
     }completion:^(BOOL fnished){
         [self setAnchorPoint:CGPointMake(0.5, 0.5) forView:_viewMain];
     }];

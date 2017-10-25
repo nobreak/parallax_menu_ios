@@ -12,6 +12,7 @@
 @property (strong, nonatomic) IBOutlet UIView *viewBackground;
 @property (weak, nonatomic) IBOutlet UIView *viewMain;
 @property (weak, nonatomic) IBOutlet UIView *viewShadowOverlay;
+@property (weak, nonatomic) IBOutlet UIView *viewMenu;
 
 - (IBAction)onBtnMenuTouched:(id)sender;
 
