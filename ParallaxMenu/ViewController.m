@@ -68,6 +68,14 @@
     }
 }
 
+- (IBAction)onBtnEntry1Touched:(id)sender {
+    [self closeMenu];
+}
+
+- (IBAction)onBtnEntry2Touched:(id)sender {
+    [self closeMenu];
+}
+
 - (void) openMenu
 {
     [self setAnchorPoint:CGPointMake(1.0, 0.5) forView:_viewMain];
