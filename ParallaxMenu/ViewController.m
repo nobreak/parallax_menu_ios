@@ -23,6 +23,15 @@
 
     self.isMenuOpen = NO;
     [self setAnchorPoint:CGPointMake(1, 0.5) forView:_viewMain];
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    
+    gradient.frame = _viewShadowOverlay.bounds;
+    gradient.startPoint = CGPointMake(0.6,0.5);
+    gradient.endPoint = CGPointMake(0,0.5);
+    gradient.colors = @[(id)[UIColor clearColor].CGColor, (id)[UIColor grayColor].CGColor];
+    
+    [_viewShadowOverlay.layer insertSublayer:gradient atIndex:0];
 }
 
 
