@@ -28,17 +28,17 @@
     
     //_viewMain.hidden = YES;
     
-    if (!UIAccessibilityIsReduceTransparencyEnabled()) {
-        self.view.backgroundColor = [UIColor clearColor];
-        
-        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-        blurEffectView.frame = self.view.bounds;
-        blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
-        //[self.view addSubview:blurEffectView];
-        //_viewBackground.layer.contents = blurEffectView;
-    }
+//    if (!UIAccessibilityIsReduceTransparencyEnabled()) {
+//        self.view.backgroundColor = [UIColor clearColor];
+//
+//        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleProminent];
+//        UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//        blurEffectView.frame = self.view.bounds;
+//        blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//
+//        //[self.view addSubview:blurEffectView];
+//        //_viewBackground.layer.contents = blurEffectView;
+//    }
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
@@ -77,11 +77,11 @@
     //Add perspective!!!
     t1.m34 = 1.0/ -1000;
     
-    t1 = CATransform3DRotate(t1, DEGREES_TO_RADIANS(angle), 0, 1, 0);
+    t1 = CATransform3DRotate(t1, DEGREES_TO_RADIANS(angle), 0, 1, 0); // open the door
+    t1 = CATransform3DTranslate(t1, 100, 0, 0); // move the door to right to have more space for the menu
     [UIView animateWithDuration:0.5 animations:^(void){
         _viewMain.layer.transform = t1;
         _viewShadowOverlay.alpha = 1.0f;
-//        _viewMain.frame = CGRectMake(_viewMain.frame.origin.x+2, _viewMain.frame.origin.y, _viewMain.frame.size.width, _viewMain.frame.size.height);
     } ];
     
     _isMenuOpen = YES;
@@ -95,11 +95,10 @@
     CATransform3D t1 = CATransform3DIdentity;
     t1.m34 = 0;
     
-    t1 = CATransform3DRotate(t1, DEGREES_TO_RADIANS(angle), 0, 1, 0);
+    t1 = CATransform3DRotate(t1, DEGREES_TO_RADIANS(angle), 0, 1, 0); // close the door
     [UIView animateWithDuration:0.5 animations:^(void){
         _viewMain.layer.transform = t1;
         _viewShadowOverlay.alpha = 0.0f;
-        _viewMain.frame = _viewBackground.frame;
     }completion:^(BOOL fnished){
         [self setAnchorPoint:CGPointMake(0.5, 0.5) forView:_viewMain];
     }];
